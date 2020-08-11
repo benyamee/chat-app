@@ -4,19 +4,12 @@ import time
 
 
 class Client:
-    """
-    for communication with server
-    """
     HOST = "192.168.0.21"
     PORT = 5500
     ADDR = (HOST, PORT)
     BUFSIZ = 512
 
     def __init__(self, name):
-        """
-        Init object and send name to server
-        :param name: str
-        """
         self.client_socket = socket(AF_INET, SOCK_STREAM)
         self.client_socket.connect(self.ADDR)
         self.messages = []
@@ -26,10 +19,6 @@ class Client:
         self.lock = Lock()
 
     def receive_messages(self):
-        """
-        receive messages from server
-        :return: None
-        """
         while True:
             try:
                 msg = self.client_socket.recv(self.BUFSIZ).decode()
@@ -43,11 +32,6 @@ class Client:
                 break
 
     def send_message(self, msg):
-        """
-        send messages to server
-        :param msg: str
-        :return: None
-        """
         try:
             self.client_socket.send(bytes(msg, "utf8"))
             if msg == "{quit}":
@@ -58,10 +42,6 @@ class Client:
             print(e)
 
     def get_messages(self):
-        """
-        :returns a list of str messages
-        :return: list[str]
-        """
         messages_copy = self.messages[:]
 
         # make sure memory is safe to access
