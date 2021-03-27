@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 class Person:
     def __init__(self, addr, client):
         self.addr = addr
