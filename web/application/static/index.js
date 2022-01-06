@@ -49,17 +49,11 @@ async function add_messages(msg, scroll) {
         "</span></div>";
     }
 
-    //var c = document.createElement('div');
-    //c.innerHTML = msg.name + " " + msg.message;
-
     // update div
     var messageDiv = document.getElementById("messages");
     messageDiv.innerHTML += content;
 
-    //messageDiv.appendChild(c);
- 
-    //$("#messages").load(location.href + " #messages");
-  }
+   }
 
   if (scroll) {
     scrollSmoothToBottom("messages");
@@ -130,14 +124,11 @@ function dateNow() {
   return cur_day + " " + hours + ":" + minutes;
 }
 
-var socket = io.connect("http://127.0.0.1:5000");
-console.log("set up connection")
+var socket = io.connect("http://129.236.157.60:5000");
 socket.on("connect", async function () {
-  console.log("before loading")
   var usr_name = await load_name();
-  console.log("after loading")
   if (usr_name != "") {
-    socket.emit("event", {
+    socket.emit("msg", {
       message: usr_name + " just connected to the server!",
       connect: true,
     });
@@ -157,7 +148,7 @@ socket.on("connect", async function () {
     msg_input.value = "";
 
     // send message to other users
-    socket.emit("event", {
+    socket.emit("msg", {
       message: user_input,
       name: user_name,
     });

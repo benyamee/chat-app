@@ -14,4 +14,3 @@ class Config:
     TESTING = os.getenv('TESTING')
     FLASK_DEBUG = os.getenv('FLASK_DEBUG')
     SECRET_KEY = os.getenv('SECRET_KEY')
-    SERVER = os.getenv('SERVER')
